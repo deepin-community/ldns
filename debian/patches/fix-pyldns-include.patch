@@ -1,0 +1,16 @@
+From: Michael Tokarev <mjt@tls.msk.ru>
+Date: Fri, 08 Apr 2022 13:55:18 +0300
+Subject: fix pyldns include
+
+contrib/python/ldns.i has #include "ldns.h", while
+other source files has it like "ldns/ldns.h". This
+works when building in source dir, but breaks when
+doing the build in a separate subdirectory.
+
+diff --git a/contrib/python/ldns.i b/contrib/python/ldns.i
+index 881ba5e..b0703cb 100644
+--- a/contrib/python/ldns.i
++++ b/contrib/python/ldns.i
+@@ -37 +37 @@
+-#include "ldns.h"
++#include "ldns/ldns.h"

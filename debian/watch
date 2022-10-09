@@ -1,0 +1,4 @@
+version=4
+# we can probably mangle 1.6.9rc1 into 1.6.9~rc1
+opts="pgpsigurlmangle=s/$/.asc/" \
+	https://www.nlnetlabs.nl/downloads/ldns/ .*/ldns@ANY_VERSION@@ARCHIVE_EXT@

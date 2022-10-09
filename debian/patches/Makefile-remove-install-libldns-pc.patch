@@ -1,0 +1,19 @@
+Description: Starting with 1.7.1, the packaging/libldns.pc fails when
+ building in debian, since it doesn't find packaging/libldns.pc.in in the
+ build output dir.
+Author: Santiago Ruano Rincón <santiagorr@riseup.net>
+
+Index: ldns/Makefile.in
+===================================================================
+--- ldns.orig/Makefile.in
++++ ldns/Makefile.in
+@@ -370,9 +370,6 @@ uninstall-h:
+ 	test ! -d $(DESTDIR)$(includedir)/ldns || rmdir -p $(DESTDIR)$(includedir)/ldns || echo "ok, dir already gone"
+ 	exit 0
+ 
+-packaging/libldns.pc: packaging/libldns.pc.in
+-	./config.status $@
+-
+ install-pc: packaging/libldns.pc
+ 	$(INSTALL) -m 644 packaging/libldns.pc $(DESTDIR)$(libdir)/pkgconfig/ldns.pc
+ 

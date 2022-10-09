@@ -1,0 +1,3 @@
+usr/lib/python3*/*-packages/_ldns.so*
+usr/lib/python3*/*-packages/ldns.py
+usr/lib/python3*/*-packages/ldnsx.py
