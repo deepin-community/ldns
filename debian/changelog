@@ -1,9 +1,3 @@
-ldns (1.8.1-1) UNRELEASED; urgency=medium
-
-  * update
-
- -- Debian DNS Team <team+dns@tracker.debian.org>  Thu, 16 Jun 2022 13:51:35 +0800
-
 ldns (1.8.1-1) unstable; urgency=medium
 
   * New upstream version 1.8.1
