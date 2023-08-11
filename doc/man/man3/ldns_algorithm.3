@@ -26,21 +26,13 @@ enum ldns_enum_algorithm
 .br
         LDNS_DH                 = 2,
 .br
-#if LDNS_BUILD_CONFIG_USE_DSA
-.br
         LDNS_DSA                = 3,
-.br
-#endif /* LDNS_BUILD_CONFIG_USE_DSA */
 .br
         LDNS_ECC                = 4,
 .br
         LDNS_RSASHA1            = 5,
 .br
-#if LDNS_BUILD_CONFIG_USE_DSA
-.br
         LDNS_DSA_NSEC3          = 6,
-.br
-#endif /* LDNS_BUILD_CONFIG_USE_DSA */
 .br
         LDNS_RSASHA1_NSEC3      = 7,
 .br
@@ -54,17 +46,9 @@ enum ldns_enum_algorithm
 .br
         LDNS_ECDSAP384SHA384    = 14,  /* RFC 6605 */
 .br
-#if LDNS_BUILD_CONFIG_USE_ED25519
-.br
 	LDNS_ED25519		= 15,  /* RFC 8080 */
 .br
-#endif /* LDNS_BUILD_CONFIG_USE_ED25519 */
-.br
-#if LDNS_BUILD_CONFIG_USE_ED448
-.br
 	LDNS_ED448		= 16,  /* RFC 8080 */
-.br
-#endif /* LDNS_BUILD_CONFIG_USE_ED448 */
 .br
         LDNS_INDIRECT           = 252,
 .br

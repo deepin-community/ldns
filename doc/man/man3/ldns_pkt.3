@@ -74,9 +74,9 @@ struct ldns_struct_pkt
 .br
 	uint8_t _edns_version;
 .br
-        /* OPT pseudo-RR presence flag */
+	/* OPT pseudo-RR presence flag */
 .br
-        uint8_t _edns_present;
+	uint8_t _edns_present;
 .br
 	\fBReserved EDNS data bits:\fR
 .br
@@ -85,6 +85,10 @@ struct ldns_struct_pkt
 	\fBArbitrary EDNS rdata:\fR
 .br
 	ldns_rdf *_edns_data;
+.br
+	\fBStructed EDNS data:\fR
+.br
+	ldns_edns_option_list *_edns_list;
 .br
 	\fBQuestion section:\fR
 .br

@@ -44,6 +44,13 @@ Allocates an array of uint8_t at dest, and puts the wireformat of the
 given packet in that array. The result_size value contains the
 length of the array, if it succeeds, and 0 otherwise (in which case
 the function also returns \%NULL)
+
+\.br
+\fBdest\fR: pointer to the array of bytes to be created
+\.br
+\fBp\fR: the packet to convert
+\.br
+\fBsize\fR: the size of the converted result
 .PP
 .HP
 \fIldns_rdf2wire\fR()

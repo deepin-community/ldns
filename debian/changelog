@@ -1,10 +1,43 @@
+ldns (1.8.3-1) unstable; urgency=medium
+
+  * new upstream version 1.8.3
+  * d/libldns3.symbols: include new symbols
+  * doxygen-in-builddir.patch: patch from upstream
+    to fix doxygen build in a separate build directory
+  * always build in a subdir (build/main for the main build), -
+    no need to hack clean target anymore
+  * d/rules: mark all build/install targets as .PHONY
+    (makes build target work with build subdir)
+  * d/libldns-dev.install: do not install libldns.pc,
+    it is already installed by upstream as ldns.pc
+  * disable GOST algorithm (Closes: #862207)
+    GOST R 34.10-2001 is an obsolete algorithm which should not be used
+    in production.  It is not provided by openssl too, a special plugin
+    is required to be installed. This change removes it entirely.
+    This removes 4 symbols out of libldns3.so:
+     ldns_gost2pkey_raw
+     ldns_gost_engine
+     ldns_key_EVP_load_gost_id
+     ldns_key_EVP_unload_gost
+    Technicallly we should bump soname when removing symbols from a
+    shared library.  Or alternatively, we can provide stubs which just
+    return failure.  But in this case there should be no problems, since
+    the symbols aren't used by any of rdepends, and they should not be
+    used by anything either, given the context.
+    If lack of one of these symbols will be problematic we can solve
+    it down the line.
+  * d/rules: since compat9 dh_auto_* tools export CFLAGS/LDFLAGS already
+  * d/changelog: fix typo in previous entry
+
+ -- Michael Tokarev <mjt@tls.msk.ru>  Mon, 05 Sep 2022 11:39:52 +0300
+
 ldns (1.8.1-1) unstable; urgency=medium
 
   * New upstream version 1.8.1
     Closes: #1008638 (FTBFS with python 3.10 due to distutils check)
     Closes: #1005646 (FTBFS with OpenSSL 3.0)
     Closes: #1009385 (output of ldns-key2ds changes after compiler changes)
-    Closes: CVE-2020-19860 (heap buffer overflow in while verifying zone file)
+    Closes: CVE-2020-19860 (heap buffer overflow while verifying zone file)
     Closes: CVE-2020-19861 (heap overflow/leakage when reading a zone file)
   * rework the build system, fixing numerous issues:
    - stop overwriting files at install time from different builds

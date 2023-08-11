@@ -3,4 +3,3 @@ usr/lib/*/libldns.a
 usr/lib/*/libldns.so
 usr/lib/*/pkgconfig/*.pc
 usr/share/man/man3/*
-packaging/libldns.pc usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/
