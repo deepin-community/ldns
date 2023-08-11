@@ -177,7 +177,31 @@ libldns.so.3 libldns3 #MINVER#
  ldns_ecdsa2pkey_raw@Base 1.7.1
  ldns_ed255192pkey_raw@Base 1.7.1
  ldns_ed4482pkey_raw@Base 1.7.1
+ ldns_edns_clone@Base 1.8.3
+ ldns_edns_deep_free@Base 1.8.3
  ldns_edns_flags@Base 1.7.1
+ ldns_edns_free@Base 1.8.3
+ ldns_edns_get_code@Base 1.8.3
+ ldns_edns_get_data@Base 1.8.3
+ ldns_edns_get_size@Base 1.8.3
+ ldns_edns_get_wireformat_buffer@Base 1.8.3
+ ldns_edns_new@Base 1.8.3
+ ldns_edns_new_from_data@Base 1.8.3
+ ldns_edns_option_list2buffer_str@Base 1.8.3
+ ldns_edns_option_list2wireformat_buffer@Base 1.8.3
+ ldns_edns_option_list_clone@Base 1.8.3
+ ldns_edns_option_list_deep_free@Base 1.8.3
+ ldns_edns_option_list_free@Base 1.8.3
+ ldns_edns_option_list_get_count@Base 1.8.3
+ ldns_edns_option_list_get_option@Base 1.8.3
+ ldns_edns_option_list_get_options_size@Base 1.8.3
+ ldns_edns_option_list_new@Base 1.8.3
+ ldns_edns_option_list_pop@Base 1.8.3
+ ldns_edns_option_list_push@Base 1.8.3
+ ldns_edns_option_list_set_option@Base 1.8.3
+ ldns_edns_set_code@Base 1.8.3
+ ldns_edns_set_data@Base 1.8.3
+ ldns_edns_set_size@Base 1.8.3
  ldns_error_str@Base 1.7.1
  ldns_fetch_valid_domain_keys@Base 1.7.1
  ldns_fetch_valid_domain_keys_time@Base 1.7.1
@@ -201,8 +225,7 @@ libldns.so.3 libldns3 #MINVER#
  ldns_get_rr_type_by_name@Base 1.7.1
  ldns_get_signing_algorithm_by_name@Base 1.7.1
  ldns_getaddrinfo@Base 1.7.1
- ldns_gost2pkey_raw@Base 1.7.1
- ldns_gost_engine@Base 1.7.1
+ ldns_hashes@Base 1.8.3
  ldns_hexdigit_to_int@Base 1.7.1
  ldns_hexstring_to_data@Base 1.7.1
  ldns_init_random@Base 1.7.1
@@ -211,8 +234,6 @@ libldns.so.3 libldns3 #MINVER#
  ldns_key2buffer_str@Base 1.7.1
  ldns_key2rr@Base 1.7.1
  ldns_key2str@Base 1.7.1
- ldns_key_EVP_load_gost_id@Base 1.7.1
- ldns_key_EVP_unload_gost@Base 1.7.1
  ldns_key_algo_supported@Base 1.7.1
  ldns_key_algorithm@Base 1.7.1
  ldns_key_assign_dsa_key@Base 1.7.1
@@ -333,6 +354,7 @@ libldns.so.3 libldns3 #MINVER#
  ldns_pkt_edns_data@Base 1.7.1
  ldns_pkt_edns_do@Base 1.7.1
  ldns_pkt_edns_extended_rcode@Base 1.7.1
+ ldns_pkt_edns_get_option_list@Base 1.8.3
  ldns_pkt_edns_udp_size@Base 1.7.1
  ldns_pkt_edns_unassigned@Base 1.7.1
  ldns_pkt_edns_version@Base 1.7.1
@@ -383,6 +405,7 @@ libldns.so.3 libldns3 #MINVER#
  ldns_pkt_set_edns_data@Base 1.7.1
  ldns_pkt_set_edns_do@Base 1.7.1
  ldns_pkt_set_edns_extended_rcode@Base 1.7.1
+ ldns_pkt_set_edns_option_list@Base 1.8.3
  ldns_pkt_set_edns_udp_size@Base 1.7.1
  ldns_pkt_set_edns_unassigned@Base 1.7.1
  ldns_pkt_set_edns_version@Base 1.7.1

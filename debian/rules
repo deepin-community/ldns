@@ -4,11 +4,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-# enable dpkg build flags
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-DPKG_EXPORT_BUILDFLAGS = 1
-include /usr/share/dpkg/buildflags.mk
-
 export DPKG_GENSYMBOLS_CHECK_LEVEL=4
 
 # the main python version (single)
@@ -32,7 +28,7 @@ PYVER=$(shell py3versions -vd)
 # For now, build only for a single pyversion is supported.
 PYVERS=
 
-CONFIGFLAGS=--disable-rpath --enable-gost --enable-gost-anyway --enable-ed25519 --disable-ldns-config \
+CONFIGFLAGS=--disable-rpath --enable-ed25519 --disable-ldns-config \
 	--with-trust-anchor=/usr/share/dns/root.key
 
 build-arch build-indep build \
@@ -41,21 +37,25 @@ binary-arch binary-indep binary \
 clean \
 : %:
 	dh $@
+.PHONY: build-arch build-indep build \
+install-indep install-arch install \
+binary-arch binary-indep binary \
+clean
 
 override_dh_auto_configure:
-	PYTHON_VERSION=${PYVER} dh_auto_configure -- $(CONFIGFLAGS) --with-examples --with-drill --with-pyldns
+	PYTHON_VERSION=${PYVER} dh_auto_configure -B build/main -- $(CONFIGFLAGS) --with-examples --with-drill --with-pyldns
 	for pyvers in $(PYVERS); do \
 		PYTHON_VERSION=$$pyvers dh_auto_configure -B build/python-$$pyvers -- $(CONFIGFLAGS) --with-pyldns; \
 		done
 
 override_dh_auto_build:
-	${MAKE} all doc
+	${MAKE} -C build/main all doc
 	for pyvers in $(PYVERS); do \
 		${MAKE} -C build/python-$$pyvers pyldns;\
 		done
 
 override_dh_auto_install:
-	${MAKE} DESTDIR=${CURDIR}/debian/tmp install install-doc
+	${MAKE} -C build/main DESTDIR=${CURDIR}/debian/tmp install install-doc
 	for pyvers in $(PYVERS); do \
 		${MAKE} DESTDIR=${CURDIR}/debian/tmp -C build/python-$$pyvers install-pyldns install-pyldnsx;\
 		done
@@ -63,19 +63,9 @@ override_dh_auto_install:
 	rm -fv debian/tmp/usr/lib/python3/dist-packages/_ldns.*a
 
 override_dh_auto_clean:
-# upstream Makefile (as of 1.8.1) in distclean does *uninstall*
-# (which will try removing things from running system if DESTDIR= isn't given)
-# And generally does not work at all, removing libtool before using it.
-# Use realclean and remove remnaints which are not removed.
-# Note upstream removes the doxygen-generated manpages [real]clean too, the
-# ones shipped in the upstream tarball, and a few surrounding files too,
-# so the cleaned up source wont be the same anyway.
-# These files are (re)generated during build, though.
-	[ ! -f Makefile ] || ${MAKE} realclean
-	rm -rf .libs/
-	rm -f _ldns.la ldns_wrapper.*o linktest.*o
-# remove the python-variant subdirs if any
 	rm -rf build/
+	# generated even when doing build in a separate directory:
+	rm -f contrib/python/ldns.py contrib/python/ldns_wrapper.c
 
 override_dh_auto_test:
 # tests in Makefile.in are not distributed

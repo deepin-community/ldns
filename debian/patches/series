@@ -1,1 +1,2 @@
 fix-pyldns-include.patch
+doxygen-in-builddir.patch
